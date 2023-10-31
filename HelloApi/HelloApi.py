@@ -11,7 +11,7 @@ def post_json_to_url(url, ):
         if response.status_code == 200:
             print(f'Successfully posted data: {json.dumps(payload)}')
             print(f'Response: {response.json()}')
-            print(f'Response: {response.json()['msg']}')
+            print(f'Response: {response.json()["msg"]}')
         else:
             print(f'Successfully posted data: {json.dumps(payload)}')
             print(f'Failed to post data. Status code: {response.status_code}')
