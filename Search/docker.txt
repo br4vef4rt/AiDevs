@@ -1,0 +1,4 @@
+docker run -p 6333:6333 -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant
+
+D:\Dev\repos\AiDevs\_Qdrant
+docker run -p 6333:6333 -v D:\Dev\repos\AiDevs\_Qdrant\:/qdrant/storage qdrant/qdrant
