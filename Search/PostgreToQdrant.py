@@ -26,7 +26,7 @@ def insEmbToQdrant(id,vector,url):
         wait=True,
         points=[point]
     )
-    print(f"Data - {url} - inserted successfully.")
+    #print(f"Data - {url} - inserted successfully.")
 
 
 try:
@@ -42,32 +42,33 @@ except psycopg2.Error as e:
     print(e)
 
 
-try:
-    cur = conn.cursor()
-    query = """
-    SELECT id, info, url FROM datafromunknow WHERE id = %s;
-    """
-    cur.execute(query, ('25294200-2d30-4108-8812-893dee50c1ba',))
-    row = cur.fetchone()   
-    #print(f"{row[0]} ' - ' {getEmbedding(row[3])}")
-    insEmbToQdrant(row[0],getEmbedding(row[1]),row[2])
-    cur.close()
-except psycopg2.Error as e:
-    print("Error: Could not execute the query")
-    print(e)
-
-
 # try:
 #     cur = conn.cursor()
-#     query = "SELECT id, info FROM datafromunknow;"
-#     cur.execute(query)
-#     rows = cur.fetchall()
-#     for row in rows:
-#         print(row)
+#     query = """
+#     SELECT id, info, url, date FROM datafromunknow WHERE id = %s;
+#     """
+#     cur.execute(query, ('25294200-2d30-4108-8812-893dee50c1ba',))
+#     row = cur.fetchone()   
+#     #print(f"{row[0]} ' - ' {getEmbedding(row[3])}")
+#     insEmbToQdrant(row[0],getEmbedding(row[1]),row[2])
 #     cur.close()
 # except psycopg2.Error as e:
 #     print("Error: Could not execute the query")
 #     print(e)
+
+
+try:
+    cur = conn.cursor()
+    query = "SELECT id, info, url, date	FROM public.datafromunknow ORDER BY date desc LIMIT 300;"
+    cur.execute(query)
+    rows = cur.fetchall()
+    for row in rows:
+        insEmbToQdrant(row[0],getEmbedding(row[1]),row[2])
+        print(f"inserted: {row[0]} ' - ' {row[3]}")
+    cur.close()
+except psycopg2.Error as e:
+    print("Error: Could not execute the query")
+    print(e)
 
 
 
