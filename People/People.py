@@ -115,9 +115,9 @@ post_json_to_url('https://zadania.aidevs.pl/token/people')
 get_Task('https://zadania.aidevs.pl/task/'+ token)
 
 t_message1 = [
-        {"role": "system", "content": """Process given question as in example: IN: "co lubi jeść Tomek Bzik?" ANS: {"imie": "Tomek", "nazwisko": "Bzik"};  IN: "Czy wiesz kim jest Adam Małysz?" ANS: {"imie": "Adam", "nazwisko": "Małysz'"};  IN: "Czy Renata Pizza lubi jeść pizzę?" ANS: {"imie": "Renata", "nazwisko": "Pizza"};"""},
-        {"role": "user", "content": f"Question to process: {s_question}"}
-    ]  
+    {"role": "system", "content": """Process given question as in example: IN: "co lubi jeść Tomek Bzik?" ANS: {"imie": "Tomek", "nazwisko": "Bzik"};  IN: "Czy wiesz kim jest Adam Małysz?" ANS: {"imie": "Adam", "nazwisko": "Małysz'"};  IN: "Czy Renata Pizza lubi jeść pizzę?" ANS: {"imie": "Renata", "nazwisko": "Pizza"};"""},
+    {"role": "user", "content": f"Question to process: {s_question}"}
+]  
 s_gptAnswer =  getGptAnswer(t_message1, "gpt-3.5-turbo")
 print(s_gptAnswer)
 dict_gptAnswer = json.loads(s_gptAnswer)
@@ -126,7 +126,7 @@ print(s_o_mnie)
 
 t_message2 = [
         {"role": "system", "content": f"Your task is answer the given question based on the context, context = '{dict_gptAnswer['imie']} {dict_gptAnswer['nazwisko']}: {s_o_mnie}, ulubiona postac z kapitana bomby: {s_bomba}, ulubiony film: {s_film}, ulubiony kolor {s_kolor}, ulubione serial: {s_serial}, wiek: {s_wiek}"},
-        {"role": "user", "content": f"Question to answer: {s_question}"}
+        {"role": "user", "content": f"Question to answer base on the provide context: {s_question}"}
     ]  
 
 post_answ('https://zadania.aidevs.pl/answer/'+ token, getGptAnswer(t_message2, "gpt-4"))
