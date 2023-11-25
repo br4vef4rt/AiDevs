@@ -2,7 +2,7 @@ gunicorn -w 4 -b 0.0.0.0:8000 FlaskApi:app
 python3 -m venv venv
 source venv/bin/activate
 
-export OPENAI_API_KEY="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"
+export OPENAI_API_KEY=""
 
 
 server {
