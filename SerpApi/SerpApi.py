@@ -84,7 +84,7 @@ def search_google(query):
     params = {
         "engine": "google",
         "q": query,
-        "api_key": "Your_SerpApi_API_Key"
+        "api_key": os.getenv("SerpApi_API_Key") 
     }
 
     search = GoogleSearch(params)
@@ -92,7 +92,7 @@ def search_google(query):
     return results
 
 
-getToken('https://zadania.aidevs.pl/token/optimaldb')
+getToken('https://zadania.aidevs.pl/token/google')
 get_Task('https://zadania.aidevs.pl/task/'+ token)
 # s_answer = ''
 # post_answ('https://zadania.aidevs.pl/answer/'+ token, s_answer)
