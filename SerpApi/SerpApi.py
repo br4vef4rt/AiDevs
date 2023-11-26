@@ -94,5 +94,5 @@ def search_google(query):
 
 getToken('https://zadania.aidevs.pl/token/google')
 get_Task('https://zadania.aidevs.pl/task/'+ token)
-# s_answer = ''
-# post_answ('https://zadania.aidevs.pl/answer/'+ token, s_answer)
+s_answer = 'https://hook.eu2.make.com/v2mxwzjia43n3vjkypluj46fu6pontg2'
+post_answ('https://zadania.aidevs.pl/answer/'+ token, s_answer)
